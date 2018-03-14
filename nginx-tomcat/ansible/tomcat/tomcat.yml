@@ -5,7 +5,7 @@
   vars:
     tomcat_host: 127.0.0.1
     tomcat_port: 8080
-    tomcat_download_url: http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.28/bin/apache-tomcat-8.5.28.tar.gz
+    tomcat_download_url: http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.29/bin/apache-tomcat-8.5.29.tar.gz
   remote_user: ubuntu
   become: true
   become_method: sudo
@@ -52,3 +52,6 @@
   handlers:
   - name: start tomcat
     script: /opt/tomcat/bin/startup.sh
+    remote_user: tomcat
+    become: true
+    become_method: sudo

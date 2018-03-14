@@ -4,8 +4,10 @@
   vars:
     nginx_host: 0.0.0.0
     nginx_port: 80
+    nginx_ssl_port: 443
     proxy_path: http://127.0.0.1:8080
     proxy_static_path: /opt/tomcat/webapps/ROOT
+    ssl_certificate_path: /etc/nginx/ssl
   remote_user: ubuntu
   become: true
   become_method: sudo
@@ -16,24 +18,47 @@
 
   - name: configure nginx as tomcat proxy
     template:
-      src: files/nginx.conf
-      dest: /etc/nginx/sites-available
+      src: "files/nginx-ssl.conf"
+      dest: "/etc/nginx/sites-available"
+    notify: restart nginx
+
+  - name: create folder for ssl certificates
+    file:
+      path: "/etc/nginx/ssl"
+      state: directory
+      mode: 644
+      owner: root
+      group: root
+
+  - name: copy the certificate
+    copy:
+      src: "files/{{ item }}"
+      dest: "/etc/nginx/ssl/{{ item }}"
+      mode: 644
+      owner: root
+      group: root
+    with_items:
+      - cert_pem
+      - password
+      - private_pem
+    sudo: yes
+    tags: ssl
     notify: restart nginx
 
   - name: clean all sites enabled
     file:
-      path: /etc/nginx/sites-enabled/
+      path: "/etc/nginx/sites-enabled/"
       state: absent
 
   - name: add directory /etc/nginx/sites-enabled/
     file:
-      path: /etc/nginx/sites-enabled/
+      path: "/etc/nginx/sites-enabled/"
       state: directory
 
   - name: add symlink to configuration
     file:
-      src: "/etc/nginx/sites-available/nginx.conf"
-      dest: "/etc/nginx/sites-enabled/nginx.conf"
+      src: "/etc/nginx/sites-available/nginx-ssl.conf"
+      dest: "/etc/nginx/sites-enabled/nginx-ssl.conf"
       state: link
     notify: restart nginx
 
