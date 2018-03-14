@@ -1,0 +1,2 @@
+ansible --private-key=ansible.pem -u ubuntu -i hosts webservers -m ping
+ansible-playbook --private-key=ansible.pem -u ubuntu -i hosts site.yml

@@ -1,0 +1,4 @@
+---
+# Deploys Tomcat + Nginx as a proxy
+- import_playbook: tomcat/tomcat.yml
+- import_playbook: nginx/nginx.yml

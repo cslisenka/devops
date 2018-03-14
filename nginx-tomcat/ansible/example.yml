@@ -1,0 +1,22 @@
+---
+# Deploys Tomcat + Nginx as a proxy
+- hosts: webservers
+  remote_user: ubuntu
+  tasks:
+
+  - name: Ping server
+    ping:
+
+  - name: Install nginx
+    file: path=/home/ubuntu/ansible state=directory
+
+  - name: Create directory as root
+    file: path=/home/ubuntu/ansible_root state=directory
+    become: yes
+    become_method: sudo
+
+  - name: Print inventory hostname
+    debug: var=inventory_hostname
+
+  - name: Ping server
+    ping:
