@@ -1,43 +1,150 @@
-1. Install Oracke JDK 8
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java8-installer
+1. Install java
+- create user tomcat:tomcat, no password, home folder /opt/tomcat
+useradd tomcat -d /opt/tomcat
+TODO check -M -s /bin/nologin - disable shell, so nobody can login as tomcat
+
+- download and extract java
+TODO download and accept license agreement
+sudo tar xvzf jdk-8u161-linux-x64.tar.gz -C /opt
+sudo chown -R tomcat:tomcat /opt/jdk1.8.0_161
+sudo chmod -R 550 /opt/jdk1.8.0_161
+
+- set permissions for jdk folder and create symlink
+sudo ln -s /opt/jdk1.8.0_161 /opt/java
+sudo chown tomcat:tomcat /opt/java
+sudo chmod 550 /opt/java
+
+- testing
+sudo su - tomcat
+/opt/java/bin/java -version
 
 2. Install tomcat
-2.1 Create user and directory
-sudo useradd tomcat -p tomcat
-sudo mkdir /opt/tomcat
-sudo chown -R tomcat /opt/tomcat
+- download and extract apache tomcat
+wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.29/bin/apache-tomcat-8.5.29.tar.gz
+sudo tar xvzf apache-tomcat-8.5.29.tar.gz -C /opt
 
-2.2 Install tomcat
-sudo su - tomcat
-cd /opt/tomcat
-sudo wget http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-9/v9.0.5/bin/apache-tomcat-9.0.5.tar.gz
-tar -xvzf apache-tomcat-9.0.5.tar.gz
+- change folder owner and permissions, create symlink
+sudo chown -R tomcat:tomcat /opt/apache-tomcat-8.5.29
+sudo chmod -R 770 /opt/apache-tomcat-8.5.29
 
-2.3 Configuring tomcat
-/opt/tomcat/apache-tomcat-9.0.5/conf/server.xml
-    <Connector address="127.0.0.1" port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
+- create symlink /opt/tomcat
+sudo ln -s /opt/apache-tomcat-8.5.29 /opt/tomcat
+sudo chown tomcat:tomcat /opt/tomcat
+sudo chmod 770 /opt/tomcat
 
-2.4 Run tomcat
-cd /opt/tomcat/apache-tomcat-9.0.5/bin
-./startup.sh
+- configuring log and tmp dir
+sudo mkdir /var/log/tomcat
+sudo chown tomcat:tomcat /var/log/tomcat
+sudo chmod 550 /var/log/tomcat
 
-3. Install nginx
-sudo apt-get install nginx
-systemctl status nginx
+- configure dir for deploying applications
+sudo mkdir -p /var/tomcat/webapps
+sudo chown -R tomcat:tomcat /var/tomcat
+sudo chmod -R 550 /var/tomcat
+sudo mv /opt/tomcat/webapps /var/tomcat
 
-3.1 Configure nginx
-move nginx.conf to /etc/nginx/sites-available/tomcat
-create symlink to it at /etc/nginx/sites-enabled
-sudo service nginx restart
+- configure tomcat
+sudo chown tomcat:tomcat server.xml
+sudo chmod 550 server.xml
+sudo mv server.xml /opt/tomcat/conf
 
-3.2 SSL in nginx
-sudo mkdir /etc/nginx/ssl
+TODO check which configuration is applied if we install tomcat as a package
+- copy server.xml to /opt/tomcat/conf > configures deployment from /var/tomcat/webapps, also sets address=127.0.0.1
+- copy logging.properties to /opt/tomcat/conf > configures logs storage to /var/log/tomcat
+- copy serenv.sh to /opt/tomcat/bin/setenv.sh
+- TODO configure GC log rotation, set in JAVA_OPTS
+
+- add tomcat to systemd (store pid in /var/run/tomcat.pid?)
+copy tomcat.service to /etc/systemd/system
+sudo systemctl daemon-reload
+sudo service tomcat start
+sudo service tomcat status
+sudo service tomcat stop
+
+- enable tomcat to start at server boot
+sudo systemctl enable tomcat
+
+- configure logs archiving using logrotate (logs should be stored in .gz)
+TODO
+
+3. Deploy application
+TODO
+- create group webserver, add user tomcat
+- create /var/tomcat/
+
+4. Generate ssl certificate
 sudo openssl genrsa -des3 -out private.pem
 sudo openssl req -new -x509 -key private.pem -out cert.pem -days 10950
-create file /etc/nginx/ssl/password with password
-copy file nginx-ssl.conf to /etc/nginx/sites-available/tomcat
-create symlink to it at /etc/nginx/sites-enabled
+sudo echo "1234" > password
+
+5. Install nginx
+- create folders for nginx
+sudo mkdir /opt/nginx-1.12.2
+sudo ln -s /opt/nginx-1.12.2 /opt/nginxnginx
+
+- create user nginx with no password, home folder /opt/nginx
+sudo useradd nginx -d /opt/nginx
+
+- download and unpack nginx sources (download to home directory)
+wget http://nginx.org/download/nginx-1.12.2.tar.gz
+sudo tar xvzf nginx-1.12.2.tar.gz
+
+TODO may be install option libraries https://gist.github.com/rjeczalik/7057434
+
+sudo apt-get install gcc
+sudo apt-get install make
+
+- build from sources and place result to /opt/nginx-1,12,2
+https://www.nginx.com/resources/wiki/start/topics/tutorials/install/
+https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/
+
+sudo ./configure --prefix=/opt/nginx-1.12.2 --with-http_ssl_module
+sudo make install
+
+- scp nginx.conf to /opt/nginx/conf
+
+- copy ssl certificates
+sudo mkdir /opt/nginx/ssl
+sudo cp -R /home/ubuntu/ssl /opt/nginx/ssl
+sudo chmod 550 /opt/nginx/ssl
+sudo chmod 440 /opt/nginx/ssl/*
+
+- change permissions for nginx folders
+sudo chmod 550 /opt/nginx/ssl
+sudo chmod 440 /opt/nginx/ssl/*
+sudo chown -R nginx:nginx /opt/nginx-1.12.2
+sudo chown nginx:nginx /opt/nginx
+sudo chown nginx:nginx /var/log/nginx
+TODO add user nginx to group webserver
+
+- add nginx to systemd
+copy nginx.service to /etc/systemd/system
+sudo systemctl enable nginx
+
+- configure logrotate
+
+- start nginx
+https://stackoverflow.com/questions/18480201/ubuntu-nginx-emerg-bind-to-0-0-0-080-failed-13-permission-denied
+https://stackoverflow.com/questions/42329261/running-nginx-as-non-root-user
+master process runs as root!
+we have error log (which is not changed in config files) and /var/run/nginx.pid owned as root
+
+sudo /opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf
+
+- stop nginx
+sudo kill -QUIT $( cat /var/run/nginx.pid )
+
+6. TODO Configure ip-tables firewall
+- allow from all :80
+- allow from all :443
+- allow from specific IP to :22
+- deny anything else
+
+7. Testing
+http://... - should redirect to https://...
+https://... should show deployed application
+ssh access only from specific IP
+all other ports (such as 8080) are not available
+
+systemctl status nginx - shows running
+systemctl status tomcat - shows running
