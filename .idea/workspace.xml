@@ -2,13 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba42838e-3cfc-4dd4-96da-9ad8c3c29d46" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl-lb.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/packages/nginx/bnginx.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.service" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/templates/nginx.conf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/templates/nginx.service" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/vars/main.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/single-box.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/logging.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/server.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/setenv.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/tomcat.logrotate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/tomcat.service" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/vars/main.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/hosts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nginx-tomcat/packages/tomcat/tomcat.logrotate" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/example.yml" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/example.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/how-to-run" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/how-to-run" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/cert_pem" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/cert_pem" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl-lb.conf" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx-ssl-lb.conf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl.conf" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx-ssl.conf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx.conf" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx.conf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/password" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/password" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/private_pem" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/private_pem" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/nginx.yml" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/nginx.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/site.yml" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/site.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/files/server.xml" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/files/server.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/jdk.yml" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/jdk.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/tomcat.yml" afterPath="$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/tomcat.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nginx-tomcat/manual-installation" afterPath="$PROJECT_DIR$/nginx-tomcat/manual-installation" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nginx-tomcat/packages/tomcat/server.xml" afterPath="$PROJECT_DIR$/nginx-tomcat/packages/tomcat/server.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,63 +39,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="nginx.conf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="39" column="16" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manual-installation" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nginx-tomcat/manual-installation">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1016">
-              <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nginx.service" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.service">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="26" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nginx-ssl.conf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>pid</find>
       <find>tomcat.ser</find>
+      <find>access</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,7 +85,11 @@
         <option value="$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.conf" />
         <option value="$PROJECT_DIR$/nginx-tomcat/manual-installation-2" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/nginx-tomcat/packages/tomcat/server.xml" />
+        <option value="$PROJECT_DIR$/nginx-tomcat/packages/tomcat/tomcat.logrotate" />
         <option value="$PROJECT_DIR$/nginx-tomcat/manual-installation" />
+        <option value="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/vars/main.yml" />
+        <option value="$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/vars/main.yml" />
       </list>
     </option>
   </component>
@@ -163,13 +138,103 @@
               <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
               <item name="ansible" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx" type="462c0819:PsiDirectoryNode" />
+              <item name="vars" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="tomcat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+              <item name="tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="vars" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx-tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="nginx" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -178,15 +243,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/nginx-tomcat/packages/nginx" />
-      <recent name="$PROJECT_DIR$/nginx-tomcat" />
-      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files" />
-      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/tomcat" />
-      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/nginx" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/files" />
       <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/files" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/templates" />
+      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/vars" />
+      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/files" />
+      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates" />
+      <recent name="$PROJECT_DIR$/nginx-tomcat/ansible" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -290,8 +356,7 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="16" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
+    <frame x="75" y="16" width="1303" height="780" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -301,9 +366,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2238806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23027888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -313,6 +377,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -348,130 +413,35 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/tomcat.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/jdk.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/how-to-run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/manual-installation-щгевфеув">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="32" column="50" lean-forward="true" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/nginx.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/hosts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/site.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/how-to-run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/tomcat.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/jdk.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/nginx.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/nginx.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/hosts">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/hosts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/site.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/site.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/how-to-run">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/how-to-run">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="77" lean-forward="false" selection-start-line="2" selection-start-column="77" selection-end-line="2" selection-end-column="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl.conf">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx-ssl.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="30" column="1" lean-forward="false" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
@@ -479,15 +449,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/tomcat.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/tomcat.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/jdk.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/jdk.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
@@ -525,7 +494,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/example.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/example.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
@@ -533,59 +502,52 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/index.html" />
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/cert_pem">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/cert_pem">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="23" column="25" lean-forward="false" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/private_pem">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/private_pem">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/password">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/password">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/hosts">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/hosts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx.conf">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/jdk.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/jdk.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/site.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/site.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/how-to-run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="63" lean-forward="false" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -603,42 +565,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl-lb.conf">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx-ssl-lb.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/tomcat.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/tomcat.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="44" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/tomcat/files/server.xml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/tomcat/files/server.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
           <caret line="68" column="24" lean-forward="false" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/bnginx.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/nginx.yml">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/nginx.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,22 +597,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/manual-installation-щгевфеув" />
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="39" column="16" lean-forward="false" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.service">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/tomcat/tomcat.logrotate">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="216">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/nginx/files/nginx-ssl.conf">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/tomcat/server.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="56" />
+        <state relative-caret-position="2916">
+          <caret line="162" column="60" lean-forward="false" selection-start-line="162" selection-start-column="60" selection-end-line="162" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -674,26 +633,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/manual-installation-щгевфеув">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.service">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="42" />
+        <state relative-caret-position="270">
+          <caret line="15" column="26" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/nginx.conf">
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/how-to-run">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="39" column="16" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+        <state relative-caret-position="54">
+          <caret line="3" column="63" lean-forward="false" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/hosts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nginx-tomcat/manual-installation">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1016">
-          <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+        <state relative-caret-position="2934">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/single-box.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/logging.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-752">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/server.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2484">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/setenv.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="33" lean-forward="true" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/tomcat.logrotate">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/templates/tomcat.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible_old/nginx/files/nginx-ssl.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/tomcat/vars/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/packages/nginx/bnginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/templates/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/templates/nginx.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx-tomcat/ansible/roles/nginx/vars/main.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
           <folding />
         </state>
       </provider>

@@ -65,7 +65,11 @@ sudo service tomcat stop
 sudo systemctl enable tomcat
 
 - configure logs archiving using logrotate (logs should be stored in .gz)
-TODO
+copy tomcat logrotate config to /etc/logrotate.d (root:root)
+TODO do we need to add logrotate into crontab?
+
+- dry-run logrotate
+logrotate -d /etc/logrotate.d/tomcat
 
 3. Deploy application
 TODO
@@ -122,6 +126,12 @@ copy nginx.service to /etc/systemd/system
 sudo systemctl enable nginx
 
 - configure logrotate
+copy nginx logrotate config to /etc/logrotate.d (root:root)
+
+- dry-run logrotate
+TODO gzip doesn't work
+TODO configure log rotation per-application level, and use logrotate only for gzipping and removing old logs (> 1 month)
+logrotate -d /etc/logrotate.d/tomcat
 
 - start nginx
 https://stackoverflow.com/questions/18480201/ubuntu-nginx-emerg-bind-to-0-0-0-080-failed-13-permission-denied
@@ -148,3 +158,8 @@ all other ports (such as 8080) are not available
 
 systemctl status nginx - shows running
 systemctl status tomcat - shows running
+
+Вопросы
+1. Нужно ли устанавливать и конфигурировать ntp?
+2. logrotate сценарии использования (и как она может бить файлы по размеру если запускается только раз в день)
+3. запуск nginx от root
