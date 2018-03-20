@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+export JAVA_HOME={{ tomcat_java_path }}
+export CATALINA_OUT={{ tomcat_log_path }}/catalina.out
+export JAVA_OPTS="-Xms512m -Xmx512m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -Xloggc:{{ tomcat_log_path }}/gc.log -Djava.security.egd=file:/dev/./urandom"

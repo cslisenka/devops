@@ -1,13 +1,13 @@
+# {{ ansible_managed }}
 user  nginx;
-worker_processes  8;
+worker_processes  {{ nginx_worker_processes }};
 
-error_log  /var/log/nginx/error.log;
+error_log  {{ nginx_log_path }}/error.log;
 pid        /var/run/nginx.pid;
 
 events {
-  worker_connections  1024;
+  worker_connections  {{ nginx_max_connections }};
 }
-
 
 http {
   include       mime.types;
@@ -25,11 +25,11 @@ http {
   #gzip  on;
 
   server {
-    listen       80;
+    listen       {{ nginx_host }}:{{ nginx_port }};
     server_name  localhost;
 
-    access_log  /var/log/nginx/http.access.log;
-    error_log  /var/log/nginx/http.error.log;
+    access_log  {{ nginx_log_path }}/http.access.log;
+    error_log  {{ nginx_log_path }}/http.error.log;
 
     # Redirect all HTTP requests to HTTPS
     location / {
@@ -42,12 +42,11 @@ http {
     listen       443 ssl;
     server_name  localhost;
 
-    access_log  /var/log/nginx/https.access.log;
-    error_log  /var/log/nginx/https.error.log;
+    access_log  {{ nginx_log_path }}/https.access.log;
+    error_log  {{ nginx_log_path }}/https.error.log;
 
-    ssl_certificate      /opt/nginx/ssl/cert.pem;
-    ssl_certificate_key  /opt/nginx/ssl/private.pem;
-    ssl_password_file    /opt/nginx/ssl/password;
+    ssl_certificate      {{ nginx_ssl_path }}/{{ nginx_ssl_certificate }};
+    ssl_certificate_key  {{ nginx_ssl_path }}/{{ nginx_ssl_private_key }};
 
     ssl_session_cache    shared:SSL:1m;
     ssl_session_timeout  5m;
@@ -56,13 +55,13 @@ http {
     ssl_prefer_server_ciphers  on;
 
     location / {
-      proxy_pass http://127.0.0.1:8080;
+      proxy_pass {{ nginx_proxy_path }};
         proxy_set_header Host $http_host;
       gzip off; # for troubleshooting using ngrep, should be removed for production configuration
     }
 
     location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
-      root /var/tomcat/webapps/ROOT;
+      root {{ nginx_static_content_path }};
       expires 1M;
     }
   }

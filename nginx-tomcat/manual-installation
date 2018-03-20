@@ -77,6 +77,7 @@ TODO
 - create /var/tomcat/
 
 4. Generate ssl certificate
+TODO no password in certificate
 sudo openssl genrsa -des3 -out private.pem
 sudo openssl req -new -x509 -key private.pem -out cert.pem -days 10950
 sudo echo "1234" > password
@@ -161,5 +162,13 @@ systemctl status tomcat - shows running
 
 Вопросы
 1. Нужно ли устанавливать и конфигурировать ntp?
+- локальный ntp-сервер в сети
 2. logrotate сценарии использования (и как она может бить файлы по размеру если запускается только раз в день)
 3. запуск nginx от root
+4. хранение пароля от ssl-приватного ключа
+5. ставить у внутренних юзеров shell = /sbin/nologin?
+
+TODO configure redirect in IP-tables
+или
+https://superuser.com/questions/710253/allow-non-root-process-to-bind-to-port-80-and-443
+TODO syslogd

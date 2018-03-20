@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 # Systemd unit file for tomcat
 [Unit]
 Description=Apache Tomcat Web Application Container
@@ -6,14 +7,11 @@ After=syslog.target network.target
 [Service]
 Type=forking
 
-ExecStart=/opt/tomcat/bin/startup.sh
-ExecStop=/opt/tomcat/bin/shutdown.sh
+ExecStart={{ tomcat_path }}/bin/startup.sh
+ExecStop={{ tomcat_path }}/bin/shutdown.sh
 
 User=tomcat
 Group=tomcat
-UMask=0007
-RestartSec=10
-Restart=always
 
 [Install]
 WantedBy=multi-user.target

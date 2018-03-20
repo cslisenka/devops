@@ -1,16 +1,16 @@
 ---
+nginx_version: 1.12.2
 nginx_path: /opt/nginx
 nginx_log_path: /var/log/nginx
 nginx_port: 80
 nginx_ssl_port: 443
 nginx_host: 0.0.0.0
-nginx_static_content_path: /var/webapps/ROOT
+nginx_static_content_path: /opt/tomcat/webapps/ROOT
 nginx_proxy_path: http://127.0.0.1:8080
 
 nginx_ssl_path: /opt/nginx/ssl
 nginx_ssl_private_key: private.pem
 nginx_ssl_certificate: certificate.pem
-nginx_ssl_passwords_file: passwords
 
 nginx_max_connections: 1024
 nginx_worker_processes: 8

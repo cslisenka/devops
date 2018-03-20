@@ -1,9 +1,8 @@
 ---
-java_path: /opt/jdk1.8_161
-java_current_path: /opt/java
-
-tomcat_path: /opt/apache-tomcat-8.5.29
-tomcat_current_path: /opt/tomcat
+tomcat_java_path: /opt/java
+tomcat_version: 8.5.29
+tomcat_path: /opt/tomcat
+tomcat_webapps_path: /opt/tomcat/webapps
 tomcat_log_path: /var/log/tomcat
 tomcat_port: 8080
 tomcat_host: 127.0.0.1

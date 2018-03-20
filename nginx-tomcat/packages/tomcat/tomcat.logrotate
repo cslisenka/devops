@@ -1,7 +1,6 @@
 /var/log/tomcat/* {
         copytruncate
-        daily
-        delaycompress
+#        daily
         compress
         missingok
         notifempty

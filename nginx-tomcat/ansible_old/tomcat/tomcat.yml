@@ -38,9 +38,9 @@
       mode: 0755
       recurse: yes
 
-  - name: update server.xml
+  - name: update server.xml.j2
     template:
-      src: files/server.xml
+      src: files/server.xml.j2
       dest: /opt/tomcat/conf/
     notify: start tomcat
 

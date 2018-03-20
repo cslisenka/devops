@@ -1,0 +1,12 @@
+---
+- name: create user "{{ java_owner }}"
+  user: name={{ java_owner }} group={{ java_group }} home={{ java_path }} createhome=no
+
+- name: copy tar.gz with jdk
+  copy: src=files/jdk-8u161-linux-x64.tar.gz dest=/home/ubuntu force=no owner=ubuntu group=ubuntu
+
+- name: extract tar.gz into /opt
+  unarchive: src=/home/ubuntu/jdk-8u161-linux-x64.tar.gz dest=/opt owner={{ java_owner }} group={{ java_group }} mode=550 remote_src=yes
+
+- name: create symlink "{{ java_path }}" to current java version
+  file: src=/opt/jdk1.8.0_161 dest={{ java_path }} state=link owner={{ java_owner }} group={{ java_group }} mode=550

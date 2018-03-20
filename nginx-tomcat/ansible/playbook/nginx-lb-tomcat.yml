@@ -1,0 +1,6 @@
+- name: deploy nginx and tomcat
+  hosts: webservers
+  roles:
+    - java
+    - tomcat
+    - nginx

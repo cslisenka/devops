@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 # Systemd unit file for nginx
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
@@ -5,12 +6,10 @@ After=syslog.target network.target remote-fs.target nss-lookup.target tomcat.ser
 
 [Service]
 Type=forking
-PIDFile=/var/run/nginx.pid
-ExecStartPre=/opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf -t
-ExecStart=/opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf
+ExecStartPre={{ nginx_path }}/sbin/nginx -c {{ nginx_path }}/conf/nginx.conf -t
+ExecStart={{ nginx_path }}/sbin/nginx -c {{ nginx_path }}/conf/nginx.conf
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
-PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
