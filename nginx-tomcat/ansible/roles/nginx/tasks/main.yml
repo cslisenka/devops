@@ -1,46 +1,45 @@
 ---
-- name: create group "webapps"
-  group: name=webapps state=present
+- name: create groups
+  group: name=nginx state=present
+  with_items:
+    - nginx
+    - webapps
+  become: true
+  become_user: root
 
 - name: create user "nginx"
   user: name=nginx groups=nginx,webapps home=/opt/nginx createhome=no
+  become: true
+  become_user: root
 
-- name: create folder "{{ nginx_path }}"
-  file: path={{ nginx_path }} state=directory mode=755 owner=nginx group=nginx
+- name: create nginx folders
+  file: path={{ item.path }} state=directory mode={{ item.mode }} owner=nginx group=nginx
+  with_items:
+    - { path: "/opt/nginx-{{ nginx_version }}",  mode: '750' }
+    - { path: "/opt/nginx-{{ nginx_version }}/bin",  mode: '550' }
+    - { path: "/opt/nginx-{{ nginx_version }}/ssl",  mode: '550' }
+    - { path: "/opt/nginx-{{ nginx_version }}/conf",  mode: '550' }
+    - { path: "/var/run/nginx",  mode: '750' }
+  become: true
+  become_user: root
 
-- name: create folder "{{ nginx_log_path }}"
-  file: path={{ nginx_log_path }} state=directory mode=755 owner=nginx group=nginx
-
-- name: create folder "{{ nginx_ssl_path }}"
-  file: path={{ nginx_ssl_path }} state=directory mode=550 owner=nginx group=nginx
-
-- name: create "{{ nginx_path }}/conf" directory
-  file: path={{ nginx_path }}/conf state=directory owner=nginx group=nginx
-
-- name: generate private key
-  openssl_privatekey: path={{ nginx_ssl_path }}/private.pem
-
-- name: generate an OpenSSL CSR.
-  openssl_csr:
-    path: "{{ nginx_ssl_path }}/request.csr"
-    privatekey_path: "{{ nginx_ssl_path }}/{{ nginx_ssl_private_key }}"
-    common_name: "example.com"
-
-- name: generate a self signed OpenSSL certificate
-  openssl_certificate:
-    path: "{{ nginx_ssl_path }}/{{ nginx_ssl_certificate }}"
-    privatekey_path: "{{ nginx_ssl_path }}/{{ nginx_ssl_private_key }}"
-    csr_path: "{{ nginx_ssl_path }}/request.csr"
-    provider: selfsigned
+- name: create symlink "{{ nginx_path }}" to current nginx
+  file: src=/opt/nginx-{{ nginx_version }} dest={{ nginx_path }} state=link group=nginx owner=nginx mode=550
+  become: true
+  become_user: root
 
 - name: copy tar.gz with sources
-  copy: src=files/nginx-{{ nginx_version }}.tar.gz dest=/home/ubuntu force=no owner=ubuntu group=ubuntu
+  copy: src=files/nginx-{{ nginx_version }}.tar.gz dest=/tmp force=no owner=nginx group=nginx
+  become: true
+  become_user: nginx
 
-- name: extract tar.gz into /home/ubuntu
-  unarchive: src=/home/ubuntu/nginx-{{ nginx_version }}.tar.gz dest=/home/ubuntu remote_src=yes
+- name: extract tar.gz into /tmp
+  unarchive: src=/tmp/nginx-{{ nginx_version }}.tar.gz dest=/tmp remote_src=yes
+  become: true
+  become_user: nginx
 
 - name: install modules required for building nginx
-  package: name={{item}} state=present
+  package: name={{ item }} state=present
   with_items:
     - gcc
     - make
@@ -50,30 +49,36 @@
     - zlib1g-dev
     - libpcre3-dev
     - libbz2-dev
+  become: true
+  become_user: root
 
 - name: configure nginx build
-  command: "./configure --prefix=/opt/nginx-{{ nginx_version }} --with-http_ssl_module"
+  command: "./configure --prefix=/opt/nginx --error-log-path=/var/log/nginx/error.log --with-http_ssl_module"
   args:
-    chdir: "/home/ubuntu/nginx-{{ nginx_version }}"
+    chdir: "/tmp/nginx-{{ nginx_version }}"
+  become: true
+  become_user: nginx
 
-- name: make install nginx
+- name: make build nginx
   make:
-    chdir: /home/ubuntu/nginx-{{ nginx_version }}
-    target: install
+    chdir: /tmp/nginx-{{ nginx_version }}
+    target: build
+  become: true
+  become_user: nginx
 
-- name: create symlink "{{ nginx_path }}" to current nginx
-  file: src=/opt/nginx-{{ nginx_version }} dest={{ nginx_path }} state=link group=nginx owner=nginx mode=550
-
-- name: copy nginx configuration files to "{{ nginx_version }}"
-  template: src=templates/{{ item.src }} dest={{ nginx_path }}/{{ item.dest }} owner=nginx group=nginx mode=550
-  with_items:
-    - { src: 'nginx.conf.j2',  dest: 'conf/nginx.conf' }
-
-- name: change owner and permissions of the nginx installation
-  file: path=/opt/nginx owner=nginx group=nginx mode=770 recurse=yes
+- name: copy nginx binary
+  copy: src=/tmp/nginx-{{ nginx_version }}/objs/nginx dest=/opt/nginx-{{ nginx_version }}/bin owner=nginx group=nginx mode=550 remote_src=yes
+  become: true
+  become_user: root
 
 - name: add nginx to systemd
   template: src=templates/nginx.service.j2 dest=/etc/systemd/system/nginx.service
+  become: true
+  become_user: root
 
-- name: enable and start service nginx
-  systemd: name=nginx enabled=yes daemon_reload=yes state=started
+- name: enable nginx service
+  systemd: name=nginx enabled=yes daemon_reload=yes
+  become: true
+  become_user: root
+
+# TODO change permissions to strict

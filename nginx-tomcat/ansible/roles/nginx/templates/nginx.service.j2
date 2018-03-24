@@ -6,10 +6,13 @@ After=syslog.target network.target remote-fs.target nss-lookup.target tomcat.ser
 
 [Service]
 Type=forking
-ExecStartPre={{ nginx_path }}/sbin/nginx -c {{ nginx_path }}/conf/nginx.conf -t
-ExecStart={{ nginx_path }}/sbin/nginx -c {{ nginx_path }}/conf/nginx.conf
+ExecStartPre={{ nginx_path }}/bin/nginx -c {{ nginx_path }}/conf/nginx.conf -t
+ExecStart={{ nginx_path }}/bin/nginx -c {{ nginx_path }}/conf/nginx.conf
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
+
+User=nginx
+Group=nginx
 
 [Install]
 WantedBy=multi-user.target

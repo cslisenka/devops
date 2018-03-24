@@ -1,0 +1,27 @@
+---
+- name: stop service tomcat
+  systemd: name=tomcat state=stopped
+  become: true
+  become_user: root
+
+- name: create tomcat folders
+  file: path={{ item.path }} state=directory mode={{ item.mode }} owner=tomcat group=tomcat
+  with_items:
+    - { path: "{{ tomcat_log_path }}",  mode: '750', owner: 'tomcat', group: 'tomcat' }
+    - { path: "{{ tomcat_webapps_path }}",  mode: '750', owner: 'tomcat', group: 'webapps' }
+  become: true
+  become_user: root
+
+- name: copy tomcat configuration files
+  template: src=templates/{{ item.src }} dest={{ tomcat_path }}/{{ item.dest }} owner=tomcat group=tomcat mode=550
+  with_items:
+    - { src: 'logging.properties.j2',  dest: 'conf/logging.properties' }
+    - { src: 'server.xml.j2',          dest: 'conf/server.xml' }
+    - { src: 'setenv.sh.j2',           dest: 'bin/setenv.sh' }
+  become: true
+  become_user: root
+
+- name: start service tomcat
+  systemd: name=tomcat state=started
+  become: true
+  become_user: root

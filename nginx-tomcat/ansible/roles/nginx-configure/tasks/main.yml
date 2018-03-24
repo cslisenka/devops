@@ -1,0 +1,56 @@
+---
+- name: stop service nginx
+  systemd: name=nginx state=stopped
+  become: true
+  become_user: root
+
+- name: create nginx folders
+  file: path={{ item.path }} state=directory mode={{ item.mode }} owner=nginx group=nginx
+  with_items:
+    - { path: "{{ nginx_log_path }}",  mode: '750' }
+  become: true
+  become_user: root
+
+- name: generate private key
+  openssl_privatekey: path={{ nginx_ssl_path }}/{{ nginx_ssl_private_key }}
+  become: true
+  become_user: root
+
+- name: generate an OpenSSL csr
+  openssl_csr:
+    path: "{{ nginx_ssl_path }}/request.csr"
+    privatekey_path: "{{ nginx_ssl_path }}/{{ nginx_ssl_private_key }}"
+    common_name: "example.com"
+  become: true
+  become_user: root
+
+- name: generate a self signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ nginx_ssl_path }}/{{ nginx_ssl_certificate }}"
+    privatekey_path: "{{ nginx_ssl_path }}/{{ nginx_ssl_private_key }}"
+    csr_path: "{{ nginx_ssl_path }}/request.csr"
+    provider: selfsigned
+  become: true
+  become_user: root
+
+- name: change owner of ssl certificates
+  file: path={{ nginx_ssl_path }}/{{ item }} owner=nginx group=nginx mode=440
+  with_items:
+    - "{{ nginx_ssl_certificate }}"
+    - "{{ nginx_ssl_private_key }}"
+    - "request.csr"
+  become: true
+  become_user: root
+
+- name: copy nginx configuration files
+  template: src=templates/{{ item.src }} dest={{ nginx_path }}/{{ item.dest }} owner=nginx group=nginx mode=440
+  with_items:
+    - { src: 'nginx.conf.j2',  dest: 'conf/nginx.conf' }
+    - { src: 'mime.types',  dest: 'conf' }
+  become: true
+  become_user: root
+
+- name: start service nginx
+  systemd: name=nginx state=started
+  become: true
+  become_user: root

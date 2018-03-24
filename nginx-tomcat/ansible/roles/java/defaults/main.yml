@@ -1,0 +1,4 @@
+---
+java_owner: tomcat
+java_group: tomcat
+java_path: /opt/java

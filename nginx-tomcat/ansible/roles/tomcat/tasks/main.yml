@@ -1,39 +1,44 @@
 ---
-- name: create group "webapps"
+- name: create groups
   group: name=webapps state=present
+  with_items:
+    - tomcat
+    - webapps
+  become: true
+  become_user: root
 
 - name: create user "tomcat"
   user: name=tomcat groups=tomcat,webapps home={{ tomcat_path }} createhome=no
+  become: true
+  become_user: root
 
-- name: create folder "{{ tomcat_log_path }}"
-  file: path={{ tomcat_log_path }} state=directory mode=755 owner=tomcat group=tomcat
+- name: create tomcat folders
+  file: path={{ item.path }} state=directory mode={{ item.mode }} owner=tomcat group=tomcat
+  with_items:
+    - { path: "/opt/apache-tomcat-{{ tomcat_version }}",  mode: '750', owner: 'tomcat', group: 'tomcat' }
+    - { path: "/var/run/tomcat",  mode: '750', owner: 'tomcat', group: 'tomcat' }
+  become: true
+  become_user: root
 
-- name: create folder "/var/webapps"
-  file: path=/var/webapps state=directory mode=755 owner=tomcat group=webapps
+- name: create symlink to the current tomcat version
+  file: src=/opt/apache-tomcat-{{ tomcat_version }} dest={{ tomcat_path }} state=link group=tomcat owner=tomcat mode=770
+  become: true
+  become_user: root
 
 - name: copy tar.gz with tomcat
-  copy: src=files/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/home/ubuntu owner=ubuntu group=ubuntu force=no
+  copy: src=files/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/tmp force=no
 
 - name: extract tar.gz into /opt
-  unarchive: src=/home/ubuntu/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt owner=tomcat group=tomcat mode=770 remote_src=yes
-
-- name: change owner and permissions of "/opt/apache-tomcat-{{ tomcat_version }}" to tomcat
-  file: path=/opt/apache-tomcat-{{ tomcat_version }} owner=tomcat group=tomcat mode=770
-
-- name: create symlink "{{ tomcat_path }}" to current tomcat version
-  file: src=/opt/apache-tomcat-{{ tomcat_version }} dest={{ tomcat_path }} state=link group=tomcat owner=tomcat mode=770
-
-- name: copy tomcat configuration files
-  template: src=templates/{{ item.src }} dest={{ tomcat_path }}/{{ item.dest }} owner=tomcat group=tomcat mode=550
-  with_items:
-    - { src: 'logging.properties.j2',  dest: 'conf/logging.properties' }
-    - { src: 'server.xml.j2',          dest: 'conf/server.xml' }
-    - { src: 'setenv.sh.j2',           dest: 'bin/setenv.sh' }
+  unarchive: src=/tmp/apache-tomcat-{{ tomcat_version }}.tar.gz dest=/opt owner=tomcat group=tomcat mode=770 remote_src=yes
+  become: true
+  become_user: tomcat
 
 - name: add tomcat to systemd
   template: src=templates/tomcat.service.j2 dest=/etc/systemd/system/tomcat.service
+  become: true
+  become_user: root
 
-- name: enable and start service tomcat
-  systemd: name=tomcat enabled=yes daemon_reload=yes state=started
-
-# TODO use handler
+- name: enable tomcat service
+  systemd: name=tomcat enabled=yes daemon_reload=yes
+  become: true
+  become_user: root

@@ -4,4 +4,7 @@
   roles:
 #    - java
 #    - tomcat
+#    - tomcat-configure
+#    - webapp
     - nginx
+    - nginx-configure

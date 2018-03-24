@@ -1,0 +1,13 @@
+/var/log/tomcat/* {
+        copytruncate
+        daily
+        delaycompress
+        compress
+        missingok
+        notifempty
+        size 1M
+#       dateext
+#       dateformat .%Y-%m-%d.txt
+        su tomcat tomcat
+        create 0664 tomcat tomcat
+}

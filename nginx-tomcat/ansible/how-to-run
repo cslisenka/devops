@@ -1,4 +1,10 @@
+sudo apt-get install python -y
+sudo apt-get install python-openssl -y
+disable requiretty in /etc/sudoers (if needed)
+
+
 ansible --private-key=ansible.pem -u ubuntu -i hosts webservers -m ping
-ansible-playbook --private-key=ansible.pem -u ubuntu -i hosts site.yml
-ansible-playbook --private-key=ansible.pem -u ubuntu -i hosts nginx/nginx.yml
-ansible-playbook --private-key=ansible.pem -u ubuntu -i hosts tomcat/tomcat.yml
+
+ansible-playbook --private-key=key.pem -u ubuntu -i hosts playbook/single-box.yml
+
+ansible-playbook playbook/single-box.yml
