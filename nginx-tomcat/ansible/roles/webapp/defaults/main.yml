@@ -1,0 +1,5 @@
+---
+webapp_path: /var/webapps
+webapp_log_path: /var/log/webapp
+webapp_owner: tomcat
+webapp_group: webapps

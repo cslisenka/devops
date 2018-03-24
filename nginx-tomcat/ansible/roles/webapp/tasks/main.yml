@@ -1,11 +1,15 @@
 ---
-- name: create folder "{{ webapp_log_path }}"
-  file: path={{ webapp_log_path }} state=directory mode=550 owner={{ webapp_owner }} group={{ webapp_group }}
+- name: stop service tomcat
+  systemd: name=tomcat state=stopped
+  become: true
+  become_user: root
 
-- name: create folder "{{ webapp_path }}"
-  file: path={{ webapp_path }} state=directory mode=550 owner={{ webapp_owner }} group={{ webapp_group }}
+- name: copy myapp.war
+  copy: src=files/myapp.war dest={{ webapp_path }} owner={{ webapp_owner }} group={{ webapp_group }} mode=550
+  become: true
+  become_user: root
 
-- name: copy webapp.war
-  copy: src=files/demo-0.0.1-SNAPSHOT.war dest={{ webapp_path }} owner={{ webapp_owner }} group={{ webapp_group }} mode=550 force=no
-
-# TODO use tomcat handler for restart
+- name: start service tomcat
+  systemd: name=tomcat state=started
+  become: true
+  become_user: root

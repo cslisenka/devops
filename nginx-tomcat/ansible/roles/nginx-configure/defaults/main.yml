@@ -5,7 +5,7 @@ nginx_port: 80
 nginx_ssl_port: 443
 nginx_host: 0.0.0.0
 nginx_static_content_path: /var/webapps/demo-0.0.1-SNAPSHOT/WEB-INF/classes/static
-nginx_proxy_path: http://127.0.0.1:8080
+nginx_proxy_path: http://127.0.0.1:8080/myapp/
 
 nginx_ssl_path: /opt/nginx/ssl
 nginx_ssl_private_key: private.pem

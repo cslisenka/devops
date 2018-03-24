@@ -4,5 +4,4 @@ tomcat_path: /opt/tomcat
 tomcat_webapps_path: /var/webapps
 tomcat_log_path: /var/log/tomcat
 tomcat_port: 8080
-#tomcat_host: 127.0.0.1
-tomcat_host: 0.0.0.0
+tomcat_host: 127.0.0.1
