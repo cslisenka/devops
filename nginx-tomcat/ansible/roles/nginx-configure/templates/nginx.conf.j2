@@ -25,7 +25,7 @@ http {
   #gzip  on;
 
   server {
-    listen       {{ nginx_host }}:8081;
+    listen       {{ nginx_host }}:{{ nginx_port }};
     server_name  localhost;
 
     access_log  {{ nginx_log_path }}/http.access.log;
@@ -33,13 +33,13 @@ http {
 
     # Redirect all HTTP requests to HTTPS
     location / {
-      return 301 https://$http_host$request_uri;
+      return 301 https://$http_host:{{ nginx_ssl_port }}$request_uri;
     }
   }
 
   # HTTPS server
   server {
-    listen       8443 ssl;
+    listen       {{ nginx_host }}:{{ nginx_ssl_port }} ssl;
     server_name  localhost;
 
     access_log  {{ nginx_log_path }}/https.access.log;

@@ -13,7 +13,7 @@
   copy: src=files/jdk-8u152-linux-x64.tar.gz dest=/tmp force=no
 
 - name: extract tar.gz into /opt
-  unarchive: src=/home/ubuntu/jdk-8u152-linux-x64.tar.gz dest=/opt owner={{ java_owner }} group={{ java_group }} mode=550 remote_src=yes
+  unarchive: src=/tmp/jdk-8u152-linux-x64.tar.gz dest=/opt owner={{ java_owner }} group={{ java_group }} mode=550 remote_src=yes
   become: true
   become_user: root
 

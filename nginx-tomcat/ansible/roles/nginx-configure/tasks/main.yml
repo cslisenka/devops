@@ -50,6 +50,11 @@
   become: true
   become_user: root
 
+- name: allow nginx to use 80/443 ports as non-root
+  command: "setcap CAP_NET_BIND_SERVICE=+eip {{ nginx_path }}/bin/nginx"
+  become: true
+  become_user: root
+
 - name: start service nginx
   systemd: name=nginx state=started
   become: true
