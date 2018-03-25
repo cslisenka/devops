@@ -1,0 +1,41 @@
+---
+# Set the policy for the INPUT chain to DROP
+- name: test
+  iptables:
+    action: append
+    chain: INPUT
+    policy: ACCEPT
+  become: true
+  become_user: root
+
+- name: allow all in traffic to loopback interface
+  iptables:
+    action: append
+    chain: INPUT
+    policy: ACCEPT
+    in_interface: lo
+  become: true
+  become_user: root
+
+- name: allow all out traffic from loopback interface
+  iptables: chain=OUTPUT put_interface=lo policy=ACCEPT action=append
+  become: true
+  become_user: root
+
+- name: open web and ssh ports for inbound traffic
+  iptables: chain=INPUT destination_port={{ item }} protocol=tcp policy=ACCEPT action=append
+  with_items:
+    - 443
+    - 80
+    - 22
+  become: yes
+  become_user: root
+
+- name: block all other inbound connections
+  iptables: chain=INPUT policy=DROP action=append
+  become: true
+  become_user: root
+
+# I saw DHCP is not working in this case. Which other services we must enable?
+#- name: block all other outbond connections
+#  iptables: chain=INPUT policy=DROP

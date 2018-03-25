@@ -2,4 +2,11 @@
 localhost
 
 [webservers]
-18.222.2.98
+18.217.146.152
+
+[load-balancers]
+
+[application-servers]
+
+[logservers]
+18.188.83.219

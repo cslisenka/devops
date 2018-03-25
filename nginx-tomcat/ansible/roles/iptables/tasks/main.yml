@@ -1,0 +1,17 @@
+---
+- name: clean iptables
+  command: iptables -F
+  become: true
+  become_user: root
+
+- name: copy iptables configuration file
+  copy: src=templates/iptables dest=/tmp force=yes
+
+- name: apply iptables rules
+  command: "iptables-restore /tmp/iptables"
+  become: true
+  become_user: root
+
+# I saw DHCP is not working in this case. Which other services we must enable?
+#- name: block all other outbond connections
+#  iptables: chain=INPUT policy=DROP

@@ -1,4 +1,4 @@
-sudo apt-get install python -y
+#sudo apt-get install python -y
 sudo apt-get install python-openssl -y
 disable requiretty in /etc/sudoers (if needed)
 

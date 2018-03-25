@@ -1,0 +1,10 @@
+---
+- name: copy configuration file
+  template: src=templates/client.conf dest=/etc/rsyslog.d
+  become: true
+  become_user: root
+
+- name: restart rsyslog service
+  systemd: name=rsyslog state=restarted
+  become: true
+  become_user: root

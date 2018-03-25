@@ -1,0 +1,15 @@
+---
+- name: copy rsyslog configuration file
+  template: src=templates/server.conf dest=/etc/rsyslog.d
+  become: true
+  become_user: root
+
+- name: create rsyslog folder for logs
+  file: path={{ rsyslog_server_logs_path }} state=directory owner=syslog group=adm
+  become: true
+  become_user: root
+
+- name: restart rsyslog service
+  systemd: name=rsyslog state=restarted
+  become: true
+  become_user: root

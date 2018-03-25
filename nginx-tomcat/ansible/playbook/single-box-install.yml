@@ -1,0 +1,18 @@
+---
+- name: deploy log server
+  hosts: logservers
+  roles:
+    - rsyslog-server
+#    - iptables
+
+- name: deploy nginx and tomcat
+  hosts: webservers
+  roles:
+    - rsyslog-client
+    - java
+    - tomcat
+    - tomcat-configure
+    - webapp
+    - nginx
+    - nginx-configure
+    - iptables

@@ -4,6 +4,14 @@
   become: true
   become_user: root
 
+- name: create webapp directories
+  file: path={{ item.path }} state=directory owner={{ webapp_owner }} group={{ webapp_group }} mode={{ item.mode }}
+  with_items:
+    - { path: "{{ webapp_log_path }}", mode: "755"}
+    - { path: "{{ webapp_path }}", mode: "750"}
+  become: true
+  become_user: root
+
 - name: copy myapp.war
   copy: src=files/myapp.war dest={{ webapp_path }} owner={{ webapp_owner }} group={{ webapp_group }} mode=550
   become: true

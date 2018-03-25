@@ -1,7 +1,8 @@
 # {{ ansible_managed }}
 worker_processes  {{ nginx_worker_processes }};
 
-error_log  {{ nginx_log_path }}/error.log;
+error_log syslog:server=127.0.0.1:514,facility=local0,tag=nginx_error,severity=info;
+#error_log  {{ nginx_log_path }}/error.log;
 pid        /var/run/nginx/nginx.pid;
 
 events {
@@ -27,8 +28,11 @@ http {
     listen       {{ nginx_host }}:{{ nginx_port }};
     server_name  localhost;
 
-    access_log  {{ nginx_log_path }}/http.access.log;
-    error_log  {{ nginx_log_path }}/http.error.log;
+    access_log syslog:server=127.0.0.1:514,facility=local0,tag=nginx_http_access,severity=info;
+    error_log syslog:server=127.0.0.1:514,facility=local0,tag=nginx_http_error,severity=info;
+
+    #access_log  {{ nginx_log_path }}/http.access.log;
+    #error_log  {{ nginx_log_path }}/http.error.log;
 
     # Redirect all HTTP requests to HTTPS
     location / {
@@ -41,8 +45,11 @@ http {
     listen       {{ nginx_host }}:{{ nginx_ssl_port }} ssl;
     server_name  localhost;
 
-    access_log  {{ nginx_log_path }}/https.access.log;
-    error_log  {{ nginx_log_path }}/https.error.log;
+    access_log syslog:server=127.0.0.1:514,facility=local0,tag=nginx_https_access,severity=info;
+    error_log syslog:server=127.0.0.1:514,facility=local0,tag=nginx_https_error,severity=info;
+
+    #access_log  {{ nginx_log_path }}/https.access.log;
+    #error_log  {{ nginx_log_path }}/https.error.log;
 
     ssl_certificate      {{ nginx_ssl_path }}/{{ nginx_ssl_certificate }};
     ssl_certificate_key  {{ nginx_ssl_path }}/{{ nginx_ssl_private_key }};
